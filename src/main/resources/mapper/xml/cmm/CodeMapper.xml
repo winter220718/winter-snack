@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CodeMapper">
+
+    <select id="selectAll" resultType="CodeDto">
+        SELECT "CODE_ID", CODE_DC, CODE_VALUE, CODE_NM, SORT_ORD, USE_YN
+        FROM code_master
+    </select>
+
+    <insert id="insertCode" parameterType="CodeDto">
+        insert into code_master
+        values
+            (
+                #{codeId}
+                ,#{codeDc}
+                ,#{codeValue}
+                ,#{codeNm}
+                ,#{sortOrd}
+                ,#{useYn}
+            )
+
+    </insert>
+</mapper>
