@@ -71,6 +71,8 @@
         </table>
     </form>
 
+    <a href="/">홈으로</a>
+
 
 
 </head>

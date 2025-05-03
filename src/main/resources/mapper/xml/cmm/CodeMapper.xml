@@ -4,20 +4,29 @@
 
     <select id="selectAll" resultType="CodeDto">
         SELECT "CODE_ID", CODE_DC, CODE_VALUE, CODE_NM, SORT_ORD, USE_YN
-        FROM code_master
+        FROM code
     </select>
 
     <insert id="insertCode" parameterType="CodeDto">
-        insert into code_master
-        values
-            (
-                #{codeId}
-                ,#{codeDc}
-                ,#{codeValue}
-                ,#{codeNm}
-                ,#{sortOrd}
-                ,#{useYn}
-            )
+        insert into code
+            (CODE_ID
+            , CODE_DC
+            , CODE_VALUE
+            , CODE_NM
+            , SORT_ORD
+            , USE_YN)
+        values ( #{codeId}
+               , #{codeDc}
+               , #{codeValue}
+               , #{codeNm}
+               , #{sortOrd}
+               , #{useYn})
 
     </insert>
+
+    <select id="selectCodeDc" resultType="String" parameterType="String">
+        SELECT DISTINCT CODE_DC
+        FROM code
+        WHERE CODE_ID = #{code}
+    </select>
 </mapper>

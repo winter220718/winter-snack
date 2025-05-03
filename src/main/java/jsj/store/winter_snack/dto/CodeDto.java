@@ -1,9 +1,15 @@
 package jsj.store.winter_snack.dto;
 
-import lombok.Builder;
-import lombok.Data;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.*;
 
 @Data
+//@Entity
+//@NoArgsConstructor
+//@Table(name = "code")
 public class CodeDto {
 
     private String codeId;
@@ -22,4 +28,5 @@ public class CodeDto {
         this.sortOrd = sortOrd;
         this.useYn = useYn;
     }
+
 }

@@ -2,8 +2,8 @@ package jsj.store.winter_snack.service;
 
 import jsj.store.winter_snack.dto.CodeDto;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.session.SqlSession;
-import org.aspectj.apache.bcel.classfile.Code;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,5 +21,8 @@ public class CodeService {
     public void insertCode(CodeDto codeDto) {
         sqlSession.insert("CodeMapper.insertCode", codeDto);
     }
-
+    
+    public List<String> getCodeDc(String code) {
+        return sqlSession.selectList("CodeMapper.selectCodeDc", code);
+    }
 }
