@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="HomeMapper">
 
-    <select id="selectItembyCty" resultType="HomeMapper" parameterType="String">
-        SELECT "CODE_ID", CODE_DC, CODE_VALUE, CODE_NM, SORT_ORD, USE_YN
-        FROM item
+    <select id="selectItembyCty" resultType="ItemDto" parameterType="ItemDto">
+        SELECT "CODE_ID", CODE_DC, CODE_VALUE, CODE_NM, USE_YN
+        FROM ws_item
+        WHERE CODE_VALUE = #{codeValue}
     </select>
 </mapper>

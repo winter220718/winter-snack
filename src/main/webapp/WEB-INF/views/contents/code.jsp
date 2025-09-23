@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -7,31 +7,35 @@
     <table>
         <thead>
         <tr>
-            <th>번호</th>
-            <th>코드</th>
+            <th>시퀀스</th>
+            <th>코드ID</th>
             <th>코드설명</th>
             <th>코드값</th>
             <th>코드명</th>
             <th>정렬순서</th>
             <th>사용여부</th>
+            <th>수정</th>
+            <th>삭제</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach var="item" items="${code}" varStatus="status">
-            <tr>
-                <td>${status.index + 1}</td>
+            <tr id="row-${item.codeSeq}">
+                <td>${item.codeSeq}</td>
                 <td>${item.codeId}</td>
                 <td>${item.codeDc}</td>
                 <td>${item.codeValue}</td>
                 <td>${item.codeNm}</td>
                 <td>${item.sortOrd}</td>
                 <td>${item.useYn}</td>
+                <td><button class="modify-btn">수정</button></td>
+                <td><button onclick="codeDelete(${item.codeId})">삭제</button></td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
 
-    <h1>입력하기</h1>
+    <h2>입력하기</h2>
     <form action="${pageContext.request.contextPath}/code/insert" method="post">
         <table>
             <tr>
@@ -79,4 +83,6 @@
 <body>
 
 </body>
+<script src="${pageContext.request.contextPath}/static/assets/js/cmm/util.js"></script>
+<script src="${pageContext.request.contextPath}/static/assets/js/code/code.js"></script>
 </html>

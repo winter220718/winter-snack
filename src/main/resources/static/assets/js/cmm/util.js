@@ -1,6 +1,6 @@
 function sendGet(url, data) {
     $.ajax({
-        url: url,  // 실제 GET 요청 보낼 URL
+        url: url,
         method: 'GET',
         data : data,
         success: function(response) {
@@ -8,6 +8,25 @@ function sendGet(url, data) {
         },
         error: function(xhr, status, error) {
             console.error('실패:', error);
+        }
+    });
+}
+
+
+function sendPost(url, data, successCallback, errorCallback) {
+    $.ajax({
+        url: url,
+        method: 'POST',
+        data : data,
+        success: function(response) {
+            if (successCallback) {
+                successCallback(response);
+            }
+        },
+        error: function(xhr, status, error) {
+            if (errorCallback) {
+                errorCallback(xhr, status, error);
+            }
         }
     });
 }

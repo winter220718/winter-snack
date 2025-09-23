@@ -1,17 +1,18 @@
 package jsj.store.winter_snack.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Data
-//@Entity
+@Entity
 //@NoArgsConstructor
-//@Table(name = "code")
+@Table(name = "ws_code")
 public class CodeDto {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "code_seq")
+    private Long codeSeq;
     private String codeId;
     private String codeDc;
     private String codeValue;
@@ -20,7 +21,8 @@ public class CodeDto {
     private String useYn;
 
     @Builder
-    public CodeDto(String codeId, String codeDc, String codeValue, String codeNm, Integer sortOrd, String useYn) {
+    public CodeDto(Long codeSeq, String codeId, String codeDc, String codeValue, String codeNm, Integer sortOrd, String useYn) {
+        this.codeSeq = codeSeq;
         this.codeId = codeId;
         this.codeDc = codeDc;
         this.codeValue = codeValue;
@@ -29,4 +31,7 @@ public class CodeDto {
         this.useYn = useYn;
     }
 
+    public CodeDto() {
+
+    }
 }

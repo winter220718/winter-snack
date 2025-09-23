@@ -1,8 +1,9 @@
-function getItem(data) {
-    let code = {"codeDc" : data.dataset.value}
-    console.log(code);
+function getItems(_this) {
 
-    sendGet("/item", code);
+    const data = {
+        codeValue: $(_this).data('ctnm')
+    }
+    sendGet("/item", data);
 }
 
 

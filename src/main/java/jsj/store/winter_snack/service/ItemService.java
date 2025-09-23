@@ -13,7 +13,7 @@ public class ItemService {
 
     private final SqlSession sqlSession;
 
-    public List<ItemDto> selectItembyCty(String codeDc) {
-        return sqlSession.selectList("HomeMapper.selectItembyCty", codeDc);
+    public List<ItemDto> selectItembyCty(ItemDto itemDto) {
+        return sqlSession.selectList("HomeMapper.selectItembyCty", itemDto);
     }
 }

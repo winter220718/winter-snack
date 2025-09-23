@@ -3,12 +3,19 @@
 <mapper namespace="CodeMapper">
 
     <select id="selectAll" resultType="CodeDto">
-        SELECT "CODE_ID", CODE_DC, CODE_VALUE, CODE_NM, SORT_ORD, USE_YN
-        FROM code
+        SELECT CODE_SEQ
+             , "CODE_ID"
+             , CODE_DC
+             , CODE_VALUE
+             , CODE_NM
+             , SORT_ORD
+             , USE_YN
+        FROM ws_code
+       ORDER BY CODE_DC, SORT_ORD
     </select>
 
     <insert id="insertCode" parameterType="CodeDto">
-        insert into code
+        insert into ws_code
             (CODE_ID
             , CODE_DC
             , CODE_VALUE
@@ -24,9 +31,25 @@
 
     </insert>
 
-    <select id="selectCodeDc" resultType="String" parameterType="String">
-        SELECT DISTINCT CODE_DC
-        FROM code
-        WHERE CODE_ID = #{code}
+    <select id="selectCodeDc" resultType="CodeDto" parameterType="String">
+        SELECT DISTINCT CODE_NM, CODE_VALUE
+        FROM ws_code
+        WHERE CODE_ID = #{codeId}
     </select>
+
+    <delete id="deleteCode" parameterType="String">
+        DELETE FROM ws_code
+        WHERE CODE_SEQ = #{codeSeq}
+    </delete>
+
+    <update id="updateCode" parameterType="CodeDto">
+        UPDATE ws_code
+           SET CODE_ID = #{codeId}
+           , CODE_DC = #{codeDc}
+           , CODE_NM = #{codeNm}
+           , CODE_VALUE = #{codeValue}
+           , SORT_ORD = #{sortOrd}
+           , USE_YN = #{useYn}
+        WHERE CODE_SEQ = #{codeSeq}
+    </update>
 </mapper>

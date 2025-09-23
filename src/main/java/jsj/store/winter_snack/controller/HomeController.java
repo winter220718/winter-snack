@@ -6,9 +6,7 @@ import jsj.store.winter_snack.service.CodeService;
 import jsj.store.winter_snack.service.ItemService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,30 +24,14 @@ public class HomeController {
 
     @GetMapping
     public String goHome(Model model) {
-        List<String> category = codeService.getCodeDc("001"); // 카테고리
-        model.addAttribute("category", category);
+        // 카테고리
+        model.addAttribute("category", codeService.getCodeDc("001"));
         return "home/home";
     }
-
-    @GetMapping("/code/list")
-    public String makeCode(Model model) {
-        List<CodeDto> code = codeService.getCodes();
-        model.addAttribute("code", code);
-
-        return "code";
-    }
-
-    @PostMapping("/code/insert")
-    public String insertCode(CodeDto codeDto) {
-        codeService.insertCode(codeDto);
-        return "redirect:/code/list";
-
-    }
-
-
     @GetMapping("item")
-    public List<ItemDto> selectItem(String codeDc) {
-        return itemService.selectItembyCty(codeDc);
+    public List<ItemDto> selectItem(ItemDto itemDto) { // json을 객체로 변환
+        System.out.println("itemDto = " + itemDto);
+        return itemService.selectItembyCty(itemDto);
     }
 
 

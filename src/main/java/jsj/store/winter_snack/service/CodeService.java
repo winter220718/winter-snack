@@ -22,7 +22,15 @@ public class CodeService {
         sqlSession.insert("CodeMapper.insertCode", codeDto);
     }
     
-    public List<String> getCodeDc(String code) {
-        return sqlSession.selectList("CodeMapper.selectCodeDc", code);
+    public List<String> getCodeDc(String codeSeq) {
+        return sqlSession.selectList("CodeMapper.selectCodeDc", codeSeq);
+    }
+
+    public void deleteCode(String codeSeq) {
+        sqlSession.delete("CodeMapper.deleteCode", codeSeq);
+    }
+
+    public void updateCode(CodeDto codeDto) {
+        sqlSession.update("CodeMapper.updateCode", codeDto);
     }
 }
